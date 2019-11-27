@@ -4,29 +4,26 @@
 </head>
 
 <body>
-<script type="text/javascript">
-
+<script type="text/module" itemid="#terrain">
 let terrainVerticies= [
-	[ -2, -2, 0], [ -2, -1, 0], [ -1, -2, 0]
+  
 ]
-
 AFRAME.registerGeometry( "terrain", {
 	schema: {
 		vertices: {
-			default: terrainVertices
+			default: terrainVerticies
 		}
 	},
 	init( data){
-		let geometry= new THREE.Geometry()
-		geometry.vertices= data.vertices.map( vertex=> new THREE.Vector3.call( THREE, ...vertex))
-		geometry.computeBoundingBox()
-		//geometry.faces.push( new THREE.Face3( 0, 1, 2))
-		geometry.mergeVertices()
-		geometry.computeFaceNormals()
-		geometry.computeVertexNormals()
+		let geometry= new THREE.BufferGeometry()
+    geometry.setAttribute( "position", new Three.BufferAttribute( data.verticies, 3))
+		geometry.material= new THREE.k
 		this.geometry= geometry
 	}
 });
+</script>
+<script type="text/module" itemid="#wire">
+
 </script>
 <a-scene>
 
